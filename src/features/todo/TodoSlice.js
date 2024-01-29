@@ -25,14 +25,17 @@ export const todoSlice = createSlice({
         removeTodo: (state, action) => {
             state.todos = state.todos.filter((todo) => todo.id !== action.payload)
 
+            localStorage.setItem('todos',JSON.stringify(state.todos));
         },
 
         updateTodo: (state, action) => {
-            state.todos = state.todos.map((todo) => todo.id === action.payload.id ? { ...todo, text: action.payload.text } : todo)
+            state.todos = state.todos.map((todo) => todo.id === action.payload.id ? { ...todo, text: action.payload.text } : todo);
+            localStorage.setItem('todos',JSON.stringify(state.todos));
         },
 
         toggleTodo: (state, action) => {
-            state.todos = state.todos.map((todo) => todo.id === action.payload ? { ...todo, toggle: !todo.toggle } : todo)
+            state.todos = state.todos.map((todo) => todo.id === action.payload ? { ...todo, toggle: !todo.toggle } : todo);
+            localStorage.setItem('todos',JSON.stringify(state.todos));
         }
     }
 })
